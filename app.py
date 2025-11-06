@@ -35,10 +35,7 @@ def main() -> None:
         sibsp_slider = st.slider("# Licba rodzenstwa i/lub partnera", min_value=0, max_value=8)
         parch_slider = st.slider("# Liczba rodzicow i/lub dzieci", min_value=0, max_value=6)
         fare_slider = st.slider("Cena biletu", min_value=0, max_value=500, step=10)
-
-    # data = [] # to jest zadanie domowe
-    # data = [[pclass_radio, sex_radio, age_slider, sibsp_slider, parch_slider, fare_slider, embark_radio, 0]]
-    # data = [[pclass_radio, sex_radio, age_slider, sibsp_slider, parch_slider, fare_slider, embark_radio, sibsp_slider + parch_slider]]
+    
     data = [[pclass_radio, age_slider, sibsp_slider, parch_slider, fare_slider, embark_radio, sex_radio, sex_radio]]
 
     survival = model.predict(data)
@@ -46,7 +43,7 @@ def main() -> None:
 
     with prediction:
         st.header("Czy dana osoba przezyje? {0}".format("Tak" if survival[0] == 1 else "Nie"))
-        st.subheader("Pewnosc predykcji {0:.2f}%".format(s_confidance[0][survival[0] * 100]))
+        st.subheader("Pewnosc predykcji {0:.2f}%".format(s_confidance[0][survival[0]] * 100))
 
     
 if __name__ == "__main__":
